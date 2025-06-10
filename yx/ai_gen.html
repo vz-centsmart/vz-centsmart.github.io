@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>游戏</title>
+    <link rel="stylesheet" href="../biupiukiu_like.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                class="fa fa-bars"></i></a>
+        <a href="../index.html" class="w3-bar-item w3-button w3-padding-large">VicZhou</a>
+        <a href="../yx/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">游戏</a>
+        <a href="../xs/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">小说</a>
+        <a href="../xf/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">想法</a>
+        <a href="../ll/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">联络</a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="../yx/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">游戏</a>
+    <a href="../xs/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">小说</a>
+    <a href="../xf/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">想法</a>
+    <a href="../ll/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">联络</a>
+</div>
+<div class="w3-content" style="max-width:2000px; margin-top:46px">
+    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="xf">
+        <h4 class="w3-wide">刺客历险记</h4>
+        <h6 class="w3-wide">基于AI预生成文本的故事生成器</h6>
+        <h6 class="w3-wide">绝大部分代码由豆包完成</h6>
+        <div class="w3-card w3-light-gray">
+            <div class="w3-container w3-center w3-padding-16">
+                <div id="story-container">
+                </div>
+                <br>
+                <button class="w3-button w3-green" onclick="main()">开始冒险</button>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+<script src="../bpk.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+<script>
+    async function main() {
+        document.getElementById("story-container").innerHTML = "请稍候……"
+        let pyodide = await loadPyodide();
+        // Pyodide is now ready to use...
+        document.getElementById("story-container").innerHTML = pyodide.runPython(`import random
+
+terminal_buffer = []
+print = lambda t: terminal_buffer.append(t)
+
+class AssassinGirl:
+    def __init__(self):
+        self.shoes = None
+        self.foot_injury_level = 0  # 崴脚等级，0 表示无崴脚
+        self.foot_injury_description = ""  # 崴脚具体描述
+        self.health = 100  # 小女孩的生命值
+        self.movement_penalty = 0  # 移动惩罚
+        self.attack_penalty = 0  # 攻击惩罚
+        self.available_actions = {
+            "轻微崴脚": ["缓慢移动", "简单攻击"],
+            "中度崴脚": ["艰难移动", "较弱攻击"],
+            "重度崴脚": ["几乎无法移动", "极弱攻击"]
+        }
+
+    def choose_shoes(self):
+        shoe_options = ["高跟鞋", "凉拖", "运动鞋", "雪地靴", "马丁靴"]
+        self.shoes = random.choice(shoe_options)
+        shoe_descriptions = {
+            "高跟鞋": "小女孩穿上了一双精致但有些难走的高跟鞋，鞋跟又细又高，每走一步都要小心翼翼，仿佛踩在刀尖上。",
+            "凉拖": "小女孩选了双凉拖，走起路来啪嗒啪嗒响，鞋跟随着步伐晃动，虽然自在但缺乏支撑性，不利于快速行动。",
+            "运动鞋": "小女孩穿上了轻便舒适的运动鞋，弹性十足的鞋底让她感觉仿佛踩在云朵上，行动十分灵活。",
+            "雪地靴": "小女孩套上了厚厚的雪地靴，靴筒紧紧包裹着小腿，虽然保暖但有点笨重，在狭窄的地方转身都困难。",
+            "马丁靴": "小女孩蹬上了帅气的马丁靴，硬朗的鞋身给人一种安全感，但重量也让她的脚步略显沉重。"
+        }
+        print(shoe_descriptions[self.shoes])
+
+    def sneak(self):
+        print("小女孩开始小心翼翼地潜行，她像一只敏捷的猫，脚步轻盈地穿梭在阴影中。")
+        # 不同鞋子崴脚概率不同
+        ankle_injury_chances = {
+            "高跟鞋": 0.4,
+            "凉拖": 0.3,
+            "运动鞋": 0.1,
+            "雪地靴": 0.2,
+            "马丁靴": 0.25
+        }
+        if random.random() < ankle_injury_chances[self.shoes]:
+            self.foot_injury_level = random.randint(1, 3)
+            injury_descriptions = {
+                1: "小女孩不小心轻微崴了下脚，脚踝处传来一阵刺痛，就像被针刺了一下，脚踝微微泛红，能感觉到轻微的不适，但不影响大致行动。",
+                2: "小女孩中度崴脚，脚踝迅速肿了起来，像一个鼓起的气球，皮肤变得青紫，走路一瘸一拐，每走一步都伴随着明显的疼痛。",
+                3: "小女孩严重崴脚，整个人差点摔倒在地，脚疼得钻心，仿佛骨头都断了，脚踝变形，根本无法站立，只能无助地瘫坐在地上。"
+            }
+            self.foot_injury_description = injury_descriptions[self.foot_injury_level]
+            print(self.foot_injury_description)
+            self.apply_injury_penalties()
+
+    def apply_injury_penalties(self):
+        penalty_levels = {
+            1: (0.2, 0.1),
+            2: (0.5, 0.3),
+            3: (0.9, 0.8)
+        }
+        self.movement_penalty, self.attack_penalty = penalty_levels[self.foot_injury_level]
+
+    def fight(self):
+        print("小女孩遭遇敌人，迅速摆开战斗姿势，眼神中透露出坚定和无畏。")
+        if self.foot_injury_level > 0:
+            action = random.choice(self.available_actions[self.get_injury_name()])
+            if action == "缓慢移动":
+                print("小女孩因轻微崴脚，只能缓慢地移动位置来躲避敌人攻击，移动速度明显变慢。")
+            elif action == "简单攻击":
+                print("小女孩虽然轻微崴脚，但还是能发出简单的攻击，不过攻击力度有所减弱。")
+            elif action == "艰难移动":
+                print("小女孩中度崴脚，艰难地拖着受伤的脚移动，动作十分迟缓，每一次移动都显得极为费力。")
+            elif action == "较弱攻击":
+                print("小女孩中度崴脚，攻击力度明显减弱，挥出的拳头都显得绵软无力。")
+            elif action == "几乎无法移动":
+                print("小女孩重度崴脚，几乎无法移动，只能原地防御，身体因为疼痛而微微颤抖。")
+            elif action == "极弱攻击":
+                print("小女孩重度崴脚，只能发出极弱的攻击，连抬手的动作都变得艰难。")
+        else:
+            print("小女孩灵活地与敌人战斗，攻势迅猛，动作流畅而敏捷。")
+
+        # 敌人进攻
+        attack_parts = ["头部", "腹部", "腿部", "手臂"]
+        attacked_part = random.choice(attack_parts)
+        base_damage = random.randint(10, 30)
+        damage = base_damage * (1 + self.movement_penalty)  # 崴脚状态下受到伤害增加
+        self.health -= damage
+        print(f"敌人凶狠地进攻了小女孩的 {attacked_part}，小女孩受到了 {damage:.0f} 点伤害，生命值还剩 {self.health:.0f}。")
+
+    def get_injury_name(self):
+        if self.foot_injury_level == 1:
+            return "轻微崴脚"
+        elif self.foot_injury_level == 2:
+            return "中度崴脚"
+        else:
+            return "重度崴脚"
+
+    def check_status(self):
+        if self.foot_injury_level == 3:
+            print("小女孩严重崴脚，无法继续完成任务，任务失败。")
+            self.foot_injury_consequences()
+            return False
+        elif self.health <= 0:
+            print("小女孩生命值归零，任务失败。")
+            self.health_zero_consequences()
+            return False
+        else:
+            print("小女孩成功完成任务！她欢呼雀跃，满心自豪。")
+            return True
+
+    def foot_injury_consequences(self):
+        consequences = [
+            "小女孩严重崴脚无法行动，被敌人轻松抓住，像货物一样被拖走，粗糙的地面磨破了她的衣服和皮肤，等待她的将是残酷的审讯。",
+            "敌人发现受伤的小女孩，把她当成玩物，故意踢她受伤的脚，每一脚都像重锤敲击，让她痛苦不堪，泪水在眼眶中打转。",
+            "小女孩因崴脚被困原地，敌人包围过来，拿走了她的武器，还羞辱她是个没用的刺客，让她感到无比的屈辱。"
+        ]
+        print(random.choice(consequences))
+
+    def health_zero_consequences(self):
+        consequences = [
+            "小女孩失去意识后，敌人把她当作诱饵，设下陷阱对付她的同伴，她成了敌人手中的棋子，只能任由命运摆布。",
+            "敌人以为小女孩死了，将她随意丢弃在乱葬岗，任由野兽啃食她的尸体，场景十分凄惨。",
+            "小女孩生命消逝，敌人为了泄愤，毁坏了她身上所有能证明身份的物品，让她死无全尸，只留下一片狼藉。"
+        ]
+        print(random.choice(consequences))
+
+
+def main():
+    terminal_buffer.clear()
+    girl = AssassinGirl()
+    girl.choose_shoes()
+
+    # 模拟潜行和战斗任务
+    for _ in range(3):
+        girl.sneak()
+        if girl.foot_injury_level == 3 or girl.health <= 0:
+            break
+        girl.fight()
+        if girl.foot_injury_level == 3 or girl.health <= 0:
+            break
+
+    girl.check_status()
+
+    res = ''
+    [res:=res+'<p class="xsTxt">'+i+'</p>' for i in terminal_buffer]
+    return res
+
+main()`);
+    }
+</script>
+</body>
+</html>
