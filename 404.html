@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>敬请期待</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="biupiukiu_like.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif
+        }
+
+        .mySlides {
+            display: none
+        }
+
+        #coverTxt2 {
+            font-style: italic
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                class="fa fa-bars"></i></a>
+        <a href="index.html" class="w3-bar-item w3-button w3-padding-large">VicZhou</a>
+        <a href="yx/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">游戏</a>
+        <a href="xs/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">小说</a>
+        <a href="xf/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">想法</a>
+        <a href="ll/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">联络</a>
+    </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="yx/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">游戏</a>
+    <a href="xs/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">小说</a>
+    <a href="xf/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">想法</a>
+    <a href="ll/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">联络</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:800px;margin-top:56px">
+    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="ll">
+        <h2 class="w3-wide">敬请期待</h2>
+        <br>
+        <br>
+        <h4 class="w3-opacity w3-wide" id="slogan"></h4>
+    </div>
+</div>
+<script>
+    let slogans = [
+        "多快好省地建设小站",
+        "足伤万岁，故事万岁，论坛万岁",
+        "安全高于一切 责任重于泰山",
+        "发扬拼搏精神 创建一流工程",
+        "生产必须安全 安全促进生产",
+        "鼓足干劲，力争上游"
+    ];
+    function chooseSlogan() {
+        let randnum = Math.floor(Math.random() * slogans.length);
+        document.getElementById("slogan").innerHTML = slogans[randnum];
+    }
+    window.onload = chooseSlogan;
+</script>
+</body>
+</html>
