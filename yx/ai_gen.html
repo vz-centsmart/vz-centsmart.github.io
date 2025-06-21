@@ -34,8 +34,8 @@
     <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="xf">
         <h4 class="w3-wide">刺客历险记</h4>
         <h6 class="w3-wide">基于AI预生成文本的故事生成器</h6>
-        <h6 class="w3-wide">绝大部分代码由豆包完成</h6>
         <div class="w3-card w3-light-gray">
+            <header class="w3-yellow"><h6>版本1 by 豆包</h6></header>
             <div class="w3-container w3-center w3-padding-16">
                 <div id="story-container">
                 </div>
@@ -45,6 +45,15 @@
         </div>
         <br>
         <br>
+        <div class="w3-card w3-light-gray">
+            <header class="w3-yellow"><h6>版本2 by 通义千问</h6></header>
+            <div class="w3-container w3-center w3-padding-16">
+                <div id="qwen-box">
+                </div>
+                <br>
+                <button id="qwen-button" class="w3-button w3-green" onclick="qwen_main()">开始冒险</button>
+            </div>
+        </div>
     </div>
 </div>
 <script src="../bpk.js"></script>
@@ -202,5 +211,6 @@ def main():
 main()`);
     }
 </script>
+<script src="by%20qwen.js"></script>
 </body>
 </html>
