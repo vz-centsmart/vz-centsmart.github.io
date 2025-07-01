@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>游戏</title>
+    <link rel="stylesheet" href="../biupiukiu_like.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+           href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                class="fa fa-bars"></i></a>
+        <a href="../index.html" class="w3-bar-item w3-button w3-padding-large">VicZhou</a>
+        <a href="../yx/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">游戏</a>
+        <a href="../xs/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">小说</a>
+        <a href="../xf/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">想法</a>
+        <a href="../ll/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small" target="_self">联络</a>
+    </div>
+</div>
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+    <a href="../yx/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">游戏</a>
+    <a href="../xs/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">小说</a>
+    <a href="../xf/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">想法</a>
+    <a href="../ll/index.html" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">联络</a>
+</div>
+<div class="w3-content" style="max-width:2000px; margin-top:46px">
+    <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="xf">
+        <h4 class="w3-wide">基于散列哈希的足伤故事生成器</h4>
+        <div class="w3-card w3-light-gray">
+            <div class="w3-container w3-center w3-padding-16">
+                <label class="w3-left-align"><b>输入女主姓名，获取崴脚小故事：</b></label>
+                <input class="w3-input w3-border w3-white" type="text" id="nameBox">
+                <div id="story-container">
+                </div>
+                <br>
+                <button class="w3-button w3-green" onclick="main()">运行</button>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+<script src="../bpk.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.min.js"></script>
+<script>
+    function my_format_str(f_str, contents) {
+        let f_list = f_str.split("%%");
+        let res = "";
+        for (let i = 0; i < f_list.length - 1; ++i) {
+            res += f_list[i];
+            res += contents[i];
+        }
+        res += f_list[f_list.length - 1];
+        return res;
+    }
+    function name_hash(name, n, salt) {
+        if (salt === undefined) {
+            salt = "salt";
+        }
+        return CryptoJS.MD5(name + salt.repeat(n)).words[0];
+    }
+    let data_dict = {
+        'shoe' : ["细高跟","高跟鞋","公主鞋","雪地靴","人字拖","坡跟凉鞋","凉鞋","软棉鞋","薄布鞋","篮球鞋","板鞋","运动鞋","马丁靴","长筒靴","短靴","高跟靴","玛丽珍鞋","皮鞋","拖鞋","足球鞋"], //+3
+        'sock' : ["白棉袜","短袜","船袜","带小熊图案的棉袜","白丝袜","黑丝袜","灰丝袜","肉色丝袜","连裤袜","踩脚袜","长筒袜","中筒袜","堆堆袜"],
+        'time' : ["晚零点","凌晨一点","凌晨两点","凌晨三点","凌晨四点","凌晨五点","早六点","早七点","早八点","早九点","早十点","午十一点","正午","午一点","午两点","下午三点","下午四点","晚五点","晚六点","晚七点","晚八点","晚九点","晚十点","晚十一点"],
+        'place' : ["学校","工地","码头","废弃铁轨边","赌场","舞蹈教室","天台","地下室","楼梯间","家里","营地","半山腰","森林","舞台上"],//+3
+        'status' : ["跳舞","练习踢击","同敌人搏斗","寻找宝藏","潜行","闲逛","逃离追杀","胡思乱想","追击目标","搬砖","跟踪目标","开心地玩耍","散步","指点江山","和敌人对峙","练习后手翻","练拳"],//+2
+        'trip' : ["脚下一滑","被绊了一下","一脚踩空","脚下没站稳","脚落地时没踩稳"],
+        'injury' : ["不小心崴了一下脚，脚踝一阵刺痛，开始微微泛红","脚踝狠狠扭了一下，很快就青紫一片","脚踝重重崴了下去，迅速肿了起来，好像一个皮球","脚踝崴成了九十度，疼得钻心","脚直接崴了下去，发出“啪”的一声","脚踝狠狠崴了一下，疼得她倒地不起","脚踝扭成一个恐怖的角度，她疼得大叫，仿佛骨头都断了","牵动了旧伤，让她仿佛瞬间被抽走了全部力气"],//-1
+    };
+    for (let i = 0; i < data_dict['shoe'].length; ++i) data_dict['shoe'][i] = "穿着一双" + data_dict['shoe'][i];
+    data_dict['shoe'].push("没穿鞋")
+    for (let i = 0; i < data_dict['sock'].length; ++i) data_dict['sock'][i] = "套着" + data_dict['sock'][i];
+    data_dict['sock'].push("没穿袜子")
+    function main() {
+        let input_name = document.getElementById("nameBox").value;
+        let n = 0;
+        let obj_dict = {};
+        obj_dict['name'] = input_name;
+        for (let key in data_dict){
+            let num = Math.abs(name_hash(input_name, n));
+            obj_dict[key] = data_dict[key][num % data_dict[key].length];
+            ++n;
+        }
+        let contents = [obj_dict.time, obj_dict.name, obj_dict.shoe, obj_dict.sock, obj_dict.place, obj_dict.status, obj_dict.trip, obj_dict.injury];
+        let f_str = '<p class="xsTxt">%%，%%%%，%%，正在%%%%。</p><p class="xsTxt">突然她%%，%%。</p>';
+        document.getElementById("story-container").innerHTML = my_format_str(f_str, contents);
+    }
+</script>
+</body>
+</html>
