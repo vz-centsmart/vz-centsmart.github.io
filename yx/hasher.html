@@ -40,10 +40,42 @@
                 <div id="story-container">
                 </div>
                 <br>
-                <button class="w3-button w3-green" onclick="main()">运行</button>
+                <button class="w3-button w3-green" onclick="main()">生成小故事</button>
             </div>
         </div>
         <br>
+        <div class="w3-card w3-light-gray w3-container" id="editor-area" style="display: none">
+            <div class="w3-left-align w3-padding-16" id="my-edit-field">
+                <label class="w3-left-align"><b>字符串：</b></label>
+                <input class="w3-input w3-border w3-white" type="text" id="format-str">
+                <br>
+                <br>
+                <button class="w3-button w3-blue"><i class="fa fa-plus"></i> 增加列表</button>
+                <br>
+                <br>
+                <div id="list-0">
+                    <label class="w3-left-align"><b>列表1的元素：</b></label>
+                    <button class="w3-button w3-blue"><i class="fa fa-plus-circle"></i> 增加元素</button>
+                    <button class="w3-button w3-red"><i class="fa fa-minus-circle"></i> 删除元素</button>
+                    <button class="w3-button w3-red"><i class="fa fa-minus"></i> 删除列表</button>
+                    <input class="w3-input w3-border w3-white" type="text" id="str-1">
+                    <input class="w3-input w3-border w3-white" type="text" id="str-2">
+                </div>
+                <label class="w3-left-align"><b>列表2的元素：</b></label>
+                <button class="w3-button w3-blue">增加元素</button>
+                <button class="w3-button w3-red">删除元素</button>
+                <input class="w3-input w3-border w3-white" type="text" id="str-1">
+                <input class="w3-input w3-border w3-white" type="text" id="str-2">
+            </div>
+            <br>
+            <div class="w3-card">
+                <header class="w3-green">代码（可复制后直接粘贴）</header>
+                <textarea class="w3-input w3-border" style="height: 400px" id="code-block"></textarea>
+            </div>
+            <button class="w3-button w3-green" onclick="load_obj(JSON.parse(document.getElementById('code-block').value))">加载模型</button>
+            <br>
+            <br>
+        </div>
     </div>
 </div>
 <script src="../bpk.js"></script>
@@ -51,14 +83,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/enc-base64.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/md5.min.js"></script>
 <script>
-    function my_format_str(f_str, contents) {
-        let f_list = f_str.split("%%");
-        let res = "";
-        for (let i = 0; i < f_list.length - 1; ++i) {
-            res += f_list[i];
-            res += contents[i];
+    function format_obj(f_str, contents) {
+        return {
+            "f_str" : f_str,
+            "contents" : contents
         }
-        res += f_list[f_list.length - 1];
+    }
+    function gen_str(f_obj, name) {
+        let res = f_obj.f_str;
+        res = '<p class="xsTxt">' + res + '</p>';
+        res = res.replaceAll('\n', '</p><p class="xsTxt">');
+        let content_l = f_obj.contents.length;
+        res = res.replaceAll('[name]', name);
+        for (let i = 0; i < content_l; ++i) {
+            let n = Math.abs(name_hash(name, i));
+            res = res.replaceAll('[' + (i + 1) + ']', f_obj.contents[i][n % f_obj.contents[i].length]);
+        }
         return res;
     }
     function name_hash(name, n, salt) {
@@ -68,7 +108,7 @@
         return CryptoJS.MD5(name + salt.repeat(n)).words[0];
     }
     let data_dict = {
-        'shoe' : ["细高跟","高跟鞋","公主鞋","雪地靴","人字拖","坡跟凉鞋","凉鞋","软棉鞋","薄布鞋","篮球鞋","板鞋","运动鞋","马丁靴","长筒靴","短靴","高跟靴","玛丽珍鞋","皮鞋","拖鞋","足球鞋"], //+3
+        'shoe' : ["细高跟","高跟鞋","公主鞋","雪地靴","人字拖","坡跟凉鞋","凉鞋","软棉鞋","薄布鞋","篮球鞋","板鞋","运动鞋","马丁靴","长筒靴","短靴","高跟靴","玛丽珍鞋","皮鞋","拖鞋","洞洞鞋"], //+3
         'sock' : ["白棉袜","短袜","船袜","带小熊图案的棉袜","白丝袜","黑丝袜","灰丝袜","肉色丝袜","连裤袜","踩脚袜","长筒袜","中筒袜","堆堆袜"],
         'time' : ["晚零点","凌晨一点","凌晨两点","凌晨三点","凌晨四点","凌晨五点","早六点","早七点","早八点","早九点","早十点","午十一点","正午","午一点","午两点","下午三点","下午四点","晚五点","晚六点","晚七点","晚八点","晚九点","晚十点","晚十一点"],
         'place' : ["学校","工地","码头","废弃铁轨边","赌场","舞蹈教室","天台","地下室","楼梯间","家里","营地","半山腰","森林","舞台上"],//+3
@@ -80,20 +120,93 @@
     data_dict['shoe'].push("没穿鞋")
     for (let i = 0; i < data_dict['sock'].length; ++i) data_dict['sock'][i] = "套着" + data_dict['sock'][i];
     data_dict['sock'].push("没穿袜子")
+
+    let data_list = [];
+    for (let key in data_dict) {
+        data_list.push(data_dict[key]);
+    }
+    let my_f_obj;
+    function load_obj(f_obj) {
+        my_f_obj = f_obj;
+        document.getElementById("code-block").value = JSON.stringify(my_f_obj);
+    }
+    load_obj(format_obj('[3]，[name][1]，[2]，正在[4][5]。\n突然她[6]，[7]。', data_list));
+
     function main() {
         let input_name = document.getElementById("nameBox").value;
-        let n = 0;
-        let obj_dict = {};
-        obj_dict['name'] = input_name;
-        for (let key in data_dict){
-            let num = Math.abs(name_hash(input_name, n));
-            obj_dict[key] = data_dict[key][num % data_dict[key].length];
-            ++n;
-        }
-        let contents = [obj_dict.time, obj_dict.name, obj_dict.shoe, obj_dict.sock, obj_dict.place, obj_dict.status, obj_dict.trip, obj_dict.injury];
-        let f_str = '<p class="xsTxt">%%，%%%%，%%，正在%%%%。</p><p class="xsTxt">突然她%%，%%。</p>';
-        document.getElementById("story-container").innerHTML = my_format_str(f_str, contents);
+        document.getElementById("story-container").innerHTML = gen_str(my_f_obj, input_name);
     }
+    function insertAfter(newElement, targetElement){let parent = targetElement.parentNode;if(parent.lastChild === targetElement){parent.appendChild(newElement);}else{parent.insertBefore(newElement, targetElement.nextSibling);}}
+    function add(i) {
+        if (i === undefined) {
+            i = 0;
+            while (document.getElementById(`list-${i}`) !== null) {
+                ++i;
+            }
+            let new_node = document.createElement("div");
+            new_node.id = `list-${i}`;
+            new_node.innerHTML = `<label class="w3-left-align"><b>列表${i + 1}的元素：</b></label>
+                    <button class="w3-button w3-blue" onclick="add(${i})"><i class="fa fa-plus-circle"></i> 增加元素</button>
+                    <button class="w3-button w3-red" onclick="del(${i})"><i class="fa fa-minus-circle"></i> 删除元素</button>
+                    <button class="w3-button w3-red" onclick="del_list(${i})"><i class="fa fa-minus"></i> 删除列表</button><br>`;
+            if (i === 0) {
+                insertAfter(new_node, document.getElementById(`list-begin`));
+            }
+            else {
+                insertAfter(new_node, document.getElementById(`list-${i-1}`));
+            }
+        }
+        else {
+            let j = 0;
+            while (document.getElementById(`str-${i}-${j}`) !== null) {
+                ++j;
+            }
+            //document.getElementById(`list-${i}`).innerHTML += `<input class="w3-input w3-border w3-white" type="text" id="str-${i}-${j}">`;
+            let new_node = document.createElement("input");
+            new_node.classList.add("w3-input");
+            new_node.classList.add("w3-border");
+            new_node.classList.add("w3-white");
+            new_node.type = "text";
+            new_node.id = `str-${i}-${j}`;
+            document.getElementById(`list-${i}`).appendChild(new_node);
+        }
+    }
+    function del(i) {
+        if (document.getElementById(`str-${i}-0`) !== null) {
+            let list_node = document.getElementById(`list-${i}`);
+            list_node.removeChild(list_node.lastChild);
+        }
+    }
+    function del_list(i) {
+        document.getElementById("my-edit-field").removeChild(document.getElementById(`list-${i}`));
+    }
+
+    function gen_form(f_obj) {
+        let form_str = '<label class="w3-left-align"><b>故事结构：</b></label>';
+        form_str += '<input class="w3-input w3-border w3-white" type="text" id="format-str">';
+        form_str += `<button class="w3-button w3-blue" onclick="add()"><i class="fa fa-plus-circle"></i> 增加列表</button><br><br id="list-begin">`;
+        form_str += "</div>"
+        document.getElementById("my-edit-field").innerHTML = form_str;
+        for (let i = 0; i < f_obj.contents.length; ++i) {
+            add();
+            for (let j = 0; j < f_obj.contents[i].length; ++j) {
+                add(i);
+            }
+        }
+        document.getElementById("format-str").value = f_obj.f_str;
+        for (let i = 0; i < f_obj.contents.length; ++i) {
+            for (let j = 0; j < f_obj.contents[i].length; ++j) {
+                document.getElementById(`str-${i}-${j}`).value = f_obj.contents[i][j];
+            }
+        }
+    }
+
+    function toggle_editor() {
+        let style = document.getElementById("editor-area").style;
+        style.display = (style.display === "none" ? "block" : "none");
+    }
+
+    gen_form(my_f_obj)
 </script>
 </body>
 </html>
