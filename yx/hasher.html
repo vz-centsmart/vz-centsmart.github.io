@@ -44,7 +44,17 @@
             </div>
         </div>
         <br>
-        <div class="w3-card w3-light-gray w3-container" id="editor-area" style="display: none">
+        <button class="w3-button w3-yellow" onclick="toggle_editor()">编辑器</button>
+        <br>
+        <br>
+        <div class="w3-card w3-light-gray w3-container" id="editor-area" style="display: block">
+            <br>
+            <h5 class="w3-wide">说明</h5>
+            <p class="myNotes">"故事结构"格式："[name]"代表插入名字的位置，"[1]", "[2]"等分别代表列表1、列表2中的某个随机元素，以此类推。</p>
+            <p class="myNotes">点击“从编辑器中加载模型”后，即可生成模型代码。点击“加载模型代码”后，即可在上方区域内使用你的模型生成小故事。下次使用时，可以直接将之前生成的模型代码粘贴至代码区，点击“加载模型代码”后可直接使用，点击“提取模型到编辑器”可继续编辑。</p>
+            <p class="myNotes">除浏览器自带的文本编辑区域外，本网页下的编辑器暂未提供撤销功能，编辑时请务必小心。</p>
+            <hr>
+            <button class="w3-button w3-red" onclick="new_obj_on_editor()"><i class="fa fa-trash-o"></i> 清空编辑区</button>
             <div class="w3-left-align w3-padding-16" id="my-edit-field">
                 <label class="w3-left-align"><b>字符串：</b></label>
                 <input class="w3-input w3-border w3-white" type="text" id="format-str">
@@ -68,11 +78,16 @@
                 <input class="w3-input w3-border w3-white" type="text" id="str-2">
             </div>
             <br>
+            <button class="w3-button w3-green" onclick="load_obj_to_code(obj_from_editor())">从编辑器中加载模型 <i class="fa fa-arrow-down"></i></button>
+            <button class="w3-button w3-green" onclick="gen_form(JSON.parse(document.getElementById('code-block').value))">提取模型到编辑器 <i class="fa fa-arrow-up"></i></button>
+            <br>
+            <br>
             <div class="w3-card">
-                <header class="w3-green">代码（可复制后直接粘贴）</header>
+                <header class="w3-green">代码（可编辑）</header>
                 <textarea class="w3-input w3-border" style="height: 400px" id="code-block"></textarea>
             </div>
-            <button class="w3-button w3-green" onclick="load_obj(JSON.parse(document.getElementById('code-block').value))">加载模型</button>
+            <br>
+            <button class="w3-button w3-green" onclick="try_load()">加载模型代码 <i class="fa fa-download"></i></button>
             <br>
             <br>
         </div>
@@ -130,6 +145,10 @@
         my_f_obj = f_obj;
         document.getElementById("code-block").value = JSON.stringify(my_f_obj);
     }
+    function load_obj_to_code(f_obj) {
+        document.getElementById("code-block").value = JSON.stringify(f_obj);
+    }
+
     load_obj(format_obj('[3]，[name][1]，[2]，正在[4][5]。\n突然她[6]，[7]。', data_list));
 
     function main() {
@@ -204,6 +223,52 @@
     function toggle_editor() {
         let style = document.getElementById("editor-area").style;
         style.display = (style.display === "none" ? "block" : "none");
+    }
+
+    function new_obj_on_editor() {
+        gen_form(format_obj("", []))
+        document.getElementById("code-block").value = JSON.stringify(format_obj("", []));
+    }
+
+    function obj_from_editor() {
+        let format_str = document.getElementById("format-str").value;
+        let contents = [];
+
+        let flag = true;
+        let children = document.getElementById("my-edit-field").children
+        for (let i = 0; i < children.length; ++i) {
+            if (children[i].id.startsWith("list-") && children[i].id !== "list-begin") {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            return format_obj(format_str, contents);
+        }
+
+        let i = 0;
+        while (document.getElementById("list-" + i) === null) {
+            ++i;
+        }
+        let list_node = document.getElementById("list-" + i);
+        while (list_node !== null) {
+            let list_id = +(list_node.id.split("-")[1]);
+            while (contents.length <= list_id) {
+                contents.push([]);
+            }
+            let j = 0;
+            while (document.getElementById(`str-${list_id}-${j}`) !== null) {
+                contents[list_id].push(document.getElementById(`str-${list_id}-${j}`).value);
+                ++j;
+            }
+            list_node = list_node.nextSibling;
+        }
+        return format_obj(format_str, contents);
+    }
+
+    function try_load() {
+        load_obj(JSON.parse(document.getElementById('code-block').value));
+        alert("加载成功");
     }
 
     gen_form(my_f_obj)
