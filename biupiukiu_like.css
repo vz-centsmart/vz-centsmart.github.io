@@ -6,6 +6,7 @@ body {font-family: "Lato", sans-serif}
 .myNotes {width: 300px; margin: auto; font-style: italic; font-size: 12px; text-align: justify;}
 .myEmphasis {border: 2px solid black; padding: 10px; display: inline-block;}
 .matbox {margin: 10px; padding: 10px; border-style: dashed; background: cyan;}
+.xsTxt i {color: orangered;}
 
 #myBtn {
   display: none;

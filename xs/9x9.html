@@ -97,53 +97,7 @@
             </p>
             <p class="xsDate">2024</p>
         </div>
-        <hr id="index">
-        <h2>索引</h2>
-        <div>
-            <a href="#11" class="w4-button">1.1</a> |
-            <a href="#12" class="w4-button">1.2</a> |
-            1.3 | 1.4 | 1.5 | 1.6 | 1.7 | 1.8 | 1.9
-        </div>
-        <br>
-        <div>
-            2.1 | 2.2 |
-            <a href="#23" class="w4-button">2.3</a> |
-            2.4 | 2.5 | 2.6 | 2.7 | 2.8 |
-            <a href="#29" class="w4-button">2.9</a>
-        </div>
-        <br>
-        <div>
-            <a href="#31" class="w4-button">3.1</a> |
-            3.2 | 3.3 | 3.4 | 3.5 | 3.6 | 3.7 | 3.8 | 3.9
-        </div>
-        <br>
-        <div>
-            4.1 | 4.2 | 4.3 | 4.4 | 4.5 |
-            <a href="#46" class="w4-button">4.6</a> |
-            4.7 | 4.8 | 4.9
-        </div>
-        <br>
-        <div>
-            5.1 | 5.2 | 5.3 |
-            <a href="#54" class="w4-button">5.4</a> |
-            5.5 | 5.6 | 5.7 | 5.8 | 5.9
-        </div>
-        <br>
-        <div>
-            6.1 | 6.2 | 6.3 | 6.4 | <a href="#65" class="w4-button">6.5</a> | 6.6 | 6.7 | 6.8 | 6.9
-        </div>
-        <br>
-        <div>
-            7.1 | 7.2 | 7.3 | 7.4 | 7.5 | 7.6 | 7.7 | 7.8 | 7.9
-        </div>
-        <br>
-        <div>
-            8.1 | 8.2 | 8.3 | 8.4 | 8.5 | 8.6 | 8.7 | 8.8 | 8.9
-        </div>
-        <br>
-        <div>
-            9.1 | 9.2 | 9.3 | 9.4 | 9.5 | 9.6 | 9.7 | 9.8 | 9.9
-        </div>
+
         <hr>
         <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="11">
             <h6>1.1</h6>
@@ -720,6 +674,430 @@
         <hr>
         <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="51">
             <h6>5.1</h6>
+            <h6>人生苦短记</h6>
+            <br>
+            <p class="xsTxt">他把手伸进女孩的接口，肆意拨动她横七竖八的裸指针，让尖括号刺透她的脚趾，右值引用嵌进她的肌肤；让模板参数包一泻千里，域解析运算符星罗棋布……</p>
+            <p class="xsTxt">半晌，女孩不再抽搐。她渗血的声带默默缠住腓骨，两颗娇涔涔的眼球，撑起了一对儿曼妙的踝突。</p>
+            <p class="xsTxt">看啊，这是多秀美的静态链接库。</p>
+            <br>
+            <p class="xsTxt">等他从中关村回来时，Github Copilot已经帮男孩补全了最后一个全局函数。</p>
+            <br>
+            <button class="collapsible w4-button">点此展开/收起代码块</button>
+            <div class="folded-content w3-code notranslate" style="text-align: left">
+import math, random<br>
+<br>
+game_out = lambda x, prefix = "* ", suffix = "": print(prefix + str(x) + suffix)<br>
+<br>
+class Protection:<br>
+    protection_dict = {"none": ["无保护", 0], "loose_bandage": ["松垮的绷带", 0.1],<br>
+                       "tight_bandage": ["缠紧的绷带", 0.5], "ankle_support": ["护踝", 0.8], "splint": ["夹板", 0.99],<br>
+                       "cast": ["石膏", 0.99]}<br>
+    def __init__(self, prot_id):<br>
+        self.id = prot_id<br>
+        self.name = Protection.protection_dict[prot_id][0]<br>
+        self.protection = Protection.protection_dict[prot_id][1]<br>
+<br>
+class Footwear:<br>
+    footwear_dict = {"barefoot": ["光脚", 0, 0.5, 0], "sneakers": ["运动鞋", 0.1, 0.8, 5],<br>
+                     "boots": ["皮靴", 0.15, 0.5, 9], "high_heels": ["高跟鞋", 0.6, 0.3, 20],<br>
+                     "crocs": ["洞洞鞋", 0.3, 1, 3], "leather_shoes": ["皮鞋", 0.2, 0.3, 7]}<br>
+    def __init__(self, footwear_id):<br>
+        self.id = footwear_id<br>
+        self.name = Footwear.footwear_dict[footwear_id][0]<br>
+        self.instability = Footwear.footwear_dict[footwear_id][1]<br>
+        self.friction = Footwear.footwear_dict[footwear_id][2]<br>
+        self.attack = Footwear.footwear_dict[footwear_id][3]<br>
+<br>
+class Ground:<br>
+    ground_dict = {"grass": ["草地", 0.1, 0.5], "concrete": ["水泥地", 0.1, 0.2], "wood": ["木地板", 0.1, 0.5],<br>
+                   "sand": ["沙地", 0.3, 0.5], "gravel": ["碎石地", 0.4, 0.5], "trap": ["陷阱", 1, 0.5], }<br>
+    def __init__(self, ground_id):<br>
+        self.id = ground_id<br>
+        self.name = Ground.ground_dict[ground_id][0]<br>
+        self.unevenness = Ground.ground_dict[ground_id][1]<br>
+        self.friction = Ground.ground_dict[ground_id][2]<br>
+<br>
+class Ankle:<br>
+    lig_status = lambda x: "很健康" if x <= 0 else "有些松弛" if x <= 10 else "拉伤了" if x <= 80 else "撕裂了"<br>
+    bone_status = lambda x: "没有骨折" if x <= 0 else "有骨裂" if x <= 10 else "骨折了"<br>
+    def __init__(self):<br>
+        self.tib_lig = 0<br>
+        self.del_lig = 0<br>
+        self.lat_lig = 0<br>
+        self.med_mal = 0<br>
+        self.lat_mal = 0<br>
+        self.pos_mal = 0<br>
+        self.tal_shift = False<br>
+        self.protection = Protection("none")<br>
+    def fracture_i(self, force, continuity):<br>
+        if self.lat_lig <= 80:<br>
+            self.lat_mal = force<br>
+            self.lat_lig += 9 + force // 10<br>
+            if continuity:<br>
+                self.med_mal = math.ceil(force * 0.9)<br>
+                self.tal_shift = True<br>
+        else:<br>
+            self.lat_lig = 100<br>
+            self.med_mal = force<br>
+            self.tal_shift = True<br>
+    def fracture_ii_1(self, force, continuity):<br>
+        if self.del_lig <= 80:<br>
+            self.med_mal = force<br>
+            self.del_lig += 9 + force // 10<br>
+            if continuity:<br>
+                self.lat_mal = math.ceil(force * 0.9)<br>
+                self.pos_mal = math.ceil(force * 0.9)<br>
+                self.tal_shift = True<br>
+        else:<br>
+            self.del_lig = 100<br>
+            self.lat_mal = force<br>
+            self.pos_mal = force<br>
+            self.tal_shift = True<br>
+    def fracture_ii_2(self, force):<br>
+        self.lat_mal = force<br>
+        self.pos_mal = force<br>
+        if self.del_lig <= 80:<br>
+            self.del_lig += 9 + force // 10<br>
+            self.med_mal = force<br>
+        else:<br>
+            self.del_lig = 100<br>
+    def fracture_iii(self, force, continuity):<br>
+        if self.del_lig <= 80:<br>
+            self.med_mal = force<br>
+            self.del_lig += 9 + force // 10<br>
+            if continuity:<br>
+                self.tib_lig = force<br>
+                self.tal_shift = True<br>
+                self.lat_mal = math.ceil(force * 0.9)<br>
+    def fracture_p(self, force):<br>
+        self.med_mal = force<br>
+<br>
+    def i_twist(self, force, continuity):<br>
+        if force > 45 + random.randint(0, 10):<br>
+            if random.randint(0, 1) == 0:<br>
+                self.fracture_ii_2(force)<br>
+            else:<br>
+                self.fracture_i(force, continuity)<br>
+        else:<br>
+            self.lat_lig += force<br>
+            self.lat_lig = min(self.lat_lig, 100)<br>
+    def o_twist(self, force, continuity):<br>
+        if force > 45 + random.randint(0, 10):<br>
+            if random.randint(0, 1) == 0:<br>
+                self.fracture_ii_1(force, continuity)<br>
+            else:<br>
+                self.fracture_iii(force, continuity)<br>
+        else:<br>
+            self.del_lig += force<br>
+            self.del_lig = min(self.del_lig, 100)<br>
+    def injury_effect(self):<br>
+        lig_max = max(self.tib_lig, self.del_lig, self.lat_lig)<br>
+        mal_max = max(self.med_mal, self.lat_mal, self.pos_mal)<br>
+        if lig_max < 10 and mal_max <= 0:<br>
+            return 0<br>
+        elif lig_max < 50 and mal_max < 15:<br>
+            return 1<br>
+        else:<br>
+            return 2<br>
+    def description_str(self):<br>
+        effect = self.injury_effect()<br>
+        if effect == 0:<br>
+            return "可以正常运动。"<br>
+        elif effect == 1:<br>
+            return "有点瘸。"<br>
+        else:<br>
+            return "完全不能受力。"<br>
+    def show_status(self):<br>
+        game_out("下胫腓韧带" + Ankle.lig_status(self.tib_lig) + "；" + "三角韧带" + Ankle.lig_status(self.del_lig) + "；" + "外侧副韧带" + Ankle.lig_status(self.lat_lig) + "；")<br>
+        game_out("内踝" + Ankle.bone_status(self.med_mal) + "；" + "外踝" + Ankle.bone_status(self.lat_mal) + "；" + "后踝" + Ankle.bone_status(self.pos_mal) + "；")<br>
+        game_out("距骨" + ("错位了" if self.tal_shift else "没有错位") + "；")<br>
+<br>
+    def sprain_forced(self, force_extra):<br>
+        if random.random() < 0.3:<br>
+            self.o_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)<br>
+        else:<br>
+            self.i_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)<br>
+    def sprain_natural(self, force_extra, i_chance, o_chance):<br>
+        rand = random.random()<br>
+        if rand < i_chance:<br>
+            self.i_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)<br>
+            return True<br>
+        elif rand < i_chance + o_chance:<br>
+            self.o_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)<br>
+            return True<br>
+        return False<br>
+    def natual_chance(self):<br>
+        i_chance = self.lat_lig * (self.tib_lig + 100) * 9 / 200000<br>
+        o_chance = self.del_lig * (self.tib_lig + 100) / 200000<br>
+        return i_chance, o_chance<br>
+<br>
+class Character:<br>
+    def __init__(self, name, hp, damage, defence, footwear = "sneakers"):<br>
+        self.name = name<br>
+        self.hp = hp<br>
+        self.damage = damage<br>
+        self.defence = defence<br>
+        self.defend_factor = 0<br>
+        self.left_ankle = Ankle()<br>
+        self.right_ankle = Ankle()<br>
+        self.ground = Ground("concrete")<br>
+        self.footwear = Footwear(footwear)<br>
+    def step(self, ankle, force = 0):<br>
+        sprain_str = self.name + "在" + self.ground.name + "上崴脚了！"<br>
+        if random.random() > ankle.protection.protection:<br>
+            if random.random() < self.ground.unevenness or random.random() < self.footwear.friction + self.ground.friction - 1:<br>
+                ankle.sprain_forced(force)<br>
+                game_out(sprain_str)<br>
+                return True<br>
+            elif random.random() < 1 - (self.footwear.friction + self.ground.friction):<br>
+                game_out(self.name + "在" + self.ground.name + "上滑了一跤！")<br>
+                game_out(self.name + "崴脚了！")<br>
+                ankle.sprain_forced(force)<br>
+                return True<br>
+            else:<br>
+                increase = self.ground.unevenness + self.footwear.instability<br>
+                increase *= 0.2<br>
+                i_chance, o_chance = ankle.natual_chance()<br>
+                i_chance = max(i_chance + increase * 0.1, i_chance * (increase + 1))<br>
+                o_chance = max(o_chance + increase * 0.1, o_chance * (increase + 1))<br>
+                if ankle.sprain_natural(force, i_chance, o_chance):<br>
+                    game_out(sprain_str)<br>
+                    return True<br>
+        return False<br>
+<br>
+<br>
+    def fall(self, force):<br>
+        game_out(self.name + "从高处摔了下来！")<br>
+        ir, il = self.right_ankle.injury_effect(), self.left_ankle.injury_effect()<br>
+        if ir == il:<br>
+            if force > 45 + random.randint(0, 10):<br>
+                self.left_ankle.fracture_p(force)<br>
+                self.right_ankle.fracture_p(force)<br>
+                game_out(self.name + "双脚摔伤了！")<br>
+            else:<br>
+                self.step(self.left_ankle, force)<br>
+                self.step(self.right_ankle, force)<br>
+        elif ir > il:<br>
+            if force > 45 + random.randint(0, 10):<br>
+                self.right_ankle.fracture_p(force)<br>
+                game_out(self.name + "右脚摔伤了！")<br>
+            else:<br>
+                self.step(self.right_ankle, force)<br>
+        else:<br>
+            if force > 45 + random.randint(0, 10):<br>
+                self.left_ankle.fracture_p(force)<br>
+                game_out(self.name + "左脚摔伤了！")<br>
+            else:<br>
+                self.step(self.left_ankle, force)<br>
+    def move_to(self, ground):<br>
+        if self.act_status("移动", "移动能力") == 0:<br>
+            return<br>
+        self.ground = Ground(ground)<br>
+        game_out(self.name + "移动到了" + self.ground.name + "上。")<br>
+        self.step(self.main_ankle())<br>
+        if random.random() < 0.2:<br>
+            self.step(self.vice_ankle())<br>
+    def change_footwear(self, footwear):<br>
+        self.footwear = Footwear(footwear)<br>
+        if self.footwear.id == "barefoot":<br>
+            game_out(self.name + "脱掉了鞋子。")<br>
+        else:<br>
+            game_out(self.name + "换上了" + self.footwear.name + "。")<br>
+    def show_ankle_status(self):<br>
+        game_out(self.name + "检查自己的脚踝状态。")<br>
+        game_out(self.name + "的左脚踝：")<br>
+        self.left_ankle.show_status()<br>
+        game_out(self.name + "的右脚踝：")<br>
+        self.right_ankle.show_status()<br>
+        game_out(self.name + "的左脚" + self.left_ankle.description_str())<br>
+        game_out(self.name + "的右脚" + self.right_ankle.description_str())<br>
+    def main_ankle(self):<br>
+        if self.left_ankle.injury_effect() == self.right_ankle.injury_effect():<br>
+            return (self.left_ankle, self.right_ankle)[random.randint(0, 1)]<br>
+        elif self.left_ankle.injury_effect() > self.right_ankle.injury_effect():<br>
+            return self.right_ankle<br>
+        else:<br>
+            return self.left_ankle<br>
+    def vice_ankle(self):<br>
+        if self.main_ankle() == self.left_ankle:<br>
+            return self.right_ankle<br>
+        else:<br>
+            return self.left_ankle<br>
+    def protect(self, ankle, prot):<br>
+        ankle.protection = Protection(prot)<br>
+        ankle_name = "左" if ankle == self.left_ankle else "右"<br>
+        ankle_name += "脚踝"<br>
+        if prot == "none":<br>
+            game_out(self.name + "摘掉了" + ankle_name + "的保护装备。")<br>
+        else:<br>
+            game_out(self.name + "为" + ankle_name + "绑上了" + ankle.protection.name + "。")<br>
+<br>
+    def is_alive(self):<br>
+        return self.hp > 0<br>
+    def show_status(self):<br>
+        game_out(self.name + "检查自身状态。")<br>
+        game_out(self.name + "的生命值：" + str(self.hp))<br>
+        footwear_str = self.footwear.name<br>
+        if self.footwear.id != "barefoot":<br>
+            footwear_str = "穿着" + footwear_str<br>
+        game_out(self.name + "目前" + footwear_str + "站在" + self.ground.name + "上。")<br>
+        prot_str = self.name + "的"<br>
+        if self.left_ankle.protection.id != "none":<br>
+            prot_str += "左脚踝戴着" + self.left_ankle.protection.name + "，"<br>
+        else:<br>
+            prot_str += "左脚踝没有保护，"<br>
+        if self.right_ankle.protection.id != "none":<br>
+            prot_str += "右脚踝戴着" + self.right_ankle.protection.name + "。"<br>
+        else:<br>
+            prot_str += "右脚踝没有保护。"<br>
+        game_out(prot_str)<br>
+        if self.defend_factor != 0:<br>
+            game_out(self.name + "正在防御")<br>
+<br>
+    def act_status_silent(self):<br>
+        return 2 - min(self.left_ankle.injury_effect() + self.right_ankle.injury_effect(), 2)<br>
+    def act_status(self, act = "行动", index = "各项指标"):<br>
+        if self.left_ankle.injury_effect() >= 1 and self.right_ankle.injury_effect() >= 1:<br>
+            game_out(self.name + f"两只脚都扭伤了，不能{act}！")<br>
+            return 0<br>
+        elif self.left_ankle.injury_effect() >= 1:<br>
+            if self.left_ankle.injury_effect() == 2:<br>
+                game_out(self.name + f"左脚伤得很严重，不能{act}！")<br>
+                return 0<br>
+            else:<br>
+                game_out(self.name + f"左脚扭伤了，{index}下降！")<br>
+                return 1<br>
+        elif self.right_ankle.injury_effect() >= 1:<br>
+            if self.right_ankle.injury_effect() == 2:<br>
+                game_out(self.name + f"右脚伤得很严重，不能{act}！")<br>
+                return 0<br>
+            else:<br>
+                game_out(self.name + f"右脚扭伤了，{index}下降！")<br>
+                return 1<br>
+        return 2<br>
+<br>
+    def ankle_attack(self, target):<br>
+        status = self.act_status("攻击", "攻击力")<br>
+        force = self.damage * status / 2<br>
+        if status == 0:<br>
+            return<br>
+        elif status == 1:<br>
+            force *= 0.5<br>
+        game_out(self.name + "向" + target.name + "的脚踝发动攻击！")<br>
+        if self.step(self.main_ankle(), self.footwear.attack) or (random.random() < 0.3 and self.step(self.vice_ankle(), self.footwear.attack)):<br>
+            if self.act_status("攻击", "攻击力") == 0:<br>
+                return<br>
+        force = min(force, 100)<br>
+        lr = random.randint(0, 1)<br>
+        target_ankle = (target.left_ankle, target.right_ankle)[lr]<br>
+        target_ankle.sprain_forced(force)<br>
+        game_out(self.name + f"用{force}的力攻击了" + target.name + "的" + ["左", "右"][lr] + "脚踝！")<br>
+<br>
+    def attack(self, target):<br>
+        status = self.act_status("攻击", "攻击力")<br>
+        damage = self.damage + self.footwear.attack<br>
+        if status == 0:<br>
+            return<br>
+        elif status == 1:<br>
+            damage *= 0.5<br>
+        game_out(self.name + "向" + target.name + "发动攻击！")<br>
+        if self.step(self.main_ankle()) or (random.random() < 0.3 and self.step(self.vice_ankle())):<br>
+            if self.act_status("攻击", "攻击力") == 0:<br>
+                return<br>
+        target.take_damage(damage)<br>
+<br>
+    def defend(self):<br>
+        status = self.act_status("防御", "防御力")<br>
+        if status == 0:<br>
+            return<br>
+        elif status == 1:<br>
+            self.defend_factor = 0.5<br>
+        else:<br>
+            self.defend_factor = 1<br>
+        game_out(self.name + "进入防御状态！")<br>
+<br>
+    def heal(self):<br>
+        game_out(self.name + "开始治疗自己的脚踝。")<br>
+        for ankle in [self.left_ankle, self.right_ankle]:<br>
+            ankle.tib_lig = max(ankle.tib_lig - 10, 0)<br>
+            ankle.del_lig = max(ankle.del_lig - 10, 0)<br>
+            ankle.lat_lig = max(ankle.lat_lig - 10, 0)<br>
+            ankle.med_mal = max(ankle.med_mal - 10, 0)<br>
+            ankle.lat_mal = max(ankle.lat_mal - 10, 0)<br>
+            ankle.pos_mal = max(ankle.pos_mal - 10, 0)<br>
+            ankle.tal_shift = False<br>
+<br>
+    def take_damage(self, damage):<br>
+        defence = self.defence * self.defend_factor<br>
+        damage = max(damage - defence, 0)<br>
+        self.hp -= damage<br>
+        game_out(self.name + "受到了" + str(damage) + "点伤害！")<br>
+        game_out(self.name + "剩余生命值：" + str(self.hp))<br>
+<br>
+def act(self, target, action):<br>
+    if action == 0:<br>
+        self.attack(target)<br>
+    elif action == 1:<br>
+        self.ankle_attack(target)<br>
+    elif action == 2:<br>
+        self.heal()<br>
+    elif action == 3:<br>
+        self.defend()<br>
+    elif action == 4:<br>
+        self.move_to(list(Ground.ground_dict.keys())[random.randint(0, len(Ground.ground_dict) - 1)])<br>
+    elif action == 5:<br>
+        self.change_footwear(list(Footwear.footwear_dict.keys())[random.randint(0, len(Footwear.footwear_dict) - 1)])<br>
+    elif action == 6:<br>
+        self.protect(self.vice_ankle(), list(Protection.protection_dict.keys())[random.randint(0, len(Protection.protection_dict) - 1)])<br>
+<br>
+def basic_logic(self, target):<br>
+    if self.act_status_silent() == 0:<br>
+        return 2<br>
+    else:<br>
+        return random.randint(0, 6)<br>
+<br>
+def battle(char1, char2, pause = True, strat_1 = basic_logic, strat_2 = basic_logic):<br>
+    turns = 0<br>
+    while char1.is_alive() and char2.is_alive() and turns < 5000:<br>
+        char1.defend_factor = 0<br>
+        act(char1, char2, strat_1(char1, char2))<br>
+        if pause:<br>
+            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")<br>
+            if cmd == "check":<br>
+                char1.show_status()<br>
+                char1.show_ankle_status()<br>
+                input("按Enter键继续...")<br>
+        if not char2.is_alive():<br>
+            break<br>
+        char2.defend_factor = 0<br>
+        act(char2, char1, strat_2(char2, char1))<br>
+        if pause:<br>
+            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")<br>
+            if cmd == "check":<br>
+                char2.show_status()<br>
+                char2.show_ankle_status()<br>
+                input("按Enter键继续...")<br>
+        turns += 1<br>
+    if char1.is_alive():<br>
+        game_out(char1.name + "胜利！")<br>
+        return True<br>
+    elif char2.is_alive():<br>
+        game_out(char2.name + "胜利！")<br>
+        return False<br>
+    else:<br>
+        return char1.hp >= char2.hp<br>
+<br>
+<br>
+name_a = input("请输入己方女孩的名字：")<br>
+name_b = input("请输入敌方女孩的名字：")<br>
+<br>
+char_a = Character(name_a, 100, 10, 5)<br>
+char_b = Character(name_b, 100, 10, 5)<br>
+battle(char_a, char_b, True, basic_logic, basic_logic)<br>
+<br>
+input("按Enter键继续...")<br>
+            </div>
+            <p class="xsDate">2025</p>
         </div>
         <hr>
         <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="52">
@@ -1222,6 +1600,98 @@
         <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="99">
             <h6>9.9</h6>
         </div>
+        <hr id="index">
+        <p><i><a href="#00">0 八点一钟记</a></i></p>
+        <p><i>1 章一 开</i></p>
+        <p><a href="#11">1.1 正交归一记</a></p>
+        <p><a href="#12">1.2 蟀鸣秋风记</a></p>
+        <p>1.3 鹊踏残枝记</p>
+        <p>1.4 起落无常记</p>
+        <p>1.5 哂笑流俗记</p>
+        <p>1.6 [拒绝访问]</p>
+        <p>1.7 [拒绝访问]</p>
+        <p>1.8 [拒绝访问]</p>
+        <p>1.9 拊掌欢歌记</p>
+        <p><i>2 章二 休</i></p>
+        <p>2.1 掘井弑神记</p>
+        <p>2.2 夜游结社记</p>
+        <p><a href="#23">2.3 随机采访记</a></p>
+        <p>2.4 抟土造人记</p>
+        <p>2.5 越挫越勇记</p>
+        <p>2.6 [拒绝访问]</p>
+        <p>2.7 [拒绝访问]</p>
+        <p>2.8 开宗立派记</p>
+        <p><a href="#29">2.9 脱胎换骨记</a></p>
+        <p><i>3 章三 生</i></p>
+        <p><a href="#31">3.1 马失前蹄记</a></p>
+        <p>3.2 [拒绝访问]</p>
+        <p>3.3 假戏真做记</p>
+        <p>3.4 猫鼠相缠记</p>
+        <p>3.5 蟋蟀捕蝉记</p>
+        <p>3.6 [拒绝访问]</p>
+        <p>3.7 循环往复记</p>
+        <p>3.8 [拒绝访问]</p>
+        <p>3.9 昼伏夜出记</p>
+        <p><i>4 章四 伤</i></p>
+        <p>4.1 彗星袭月记</p>
+        <p>4.2 魔法少女记</p>
+        <p>4.3 奇袭演习记</p>
+        <p>4.4 泰山压顶记</p>
+        <p>4.5 [拒绝访问]</p>
+        <p><a href="#46">4.6 褐天崩坠记</a></p>
+        <p>4.7 [拒绝访问]</p>
+        <p>4.8 出师未捷记</p>
+        <p>4.9 量子叙事记</p>
+        <p><i>5 章五 杜</i></p>
+        <p><a href="#51">5.1 人生苦短记</a></p>
+        <p>5.2 图灵完备记</p>
+        <p>5.3 [拒绝访问]</p>
+        <p><a href="#54">5.4 霍金辐射记</a></p>
+        <p>5.5 [拒绝访问]</p>
+        <p>5.6 [拒绝访问]</p>
+        <p>5.7 松弛因子记</p>
+        <p>5.8 [拒绝访问]</p>
+        <p>5.9 [拒绝访问]</p>
+        <p><i>6 章六 景</i></p>
+        <p>6.1 [拒绝访问]</p>
+        <p>6.2 [拒绝访问]</p>
+        <p>6.3 [拒绝访问]</p>
+        <p>6.4 [拒绝访问]</p>
+        <p><a href="#65">6.5 私家观察记</a></p>
+        <p>6.6 大青不动记</p>
+        <p>6.7 [拒绝访问]</p>
+        <p>6.8 [拒绝访问]</p>
+        <p>6.9 [拒绝访问]</p>
+        <p><i>7 章七 死</i></p>
+        <p>7.1 [拒绝访问]</p>
+        <p>7.2 刑讯逼供记</p>
+        <p>7.3 硝化甘油记</p>
+        <p>7.4 为薪指尽记</p>
+        <p>7.5 [拒绝访问]</p>
+        <p>7.6 [拒绝访问]</p>
+        <p>7.7 [拒绝访问]</p>
+        <p>7.8 [拒绝访问]</p>
+        <p>7.9 [拒绝访问]</p>
+        <p><i>8 章八 惊</i></p>
+        <p>8.1 [拒绝访问]</p>
+        <p>8.2 [拒绝访问]</p>
+        <p>8.3 [拒绝访问]</p>
+        <p>8.4 [拒绝访问]</p>
+        <p>8.5 [拒绝访问]</p>
+        <p>8.6 [拒绝访问]</p>
+        <p>8.7 [拒绝访问]</p>
+        <p>8.8 [拒绝访问]</p>
+        <p>8.9 [拒绝访问]</p>
+        <p><i>9 章九 隐</i></p>
+        <p>9.1 机械降神记</p>
+        <p>9.2 落井下石记</p>
+        <p>9.3 [拒绝访问]</p>
+        <p>9.4 井有仁焉记</p>
+        <p>9.5 [拒绝访问]</p>
+        <p>9.6 [拒绝访问]</p>
+        <p>9.7 [拒绝访问]</p>
+        <p>9.8 化蛙入井记</p>
+        <p>9.9 [拒绝访问]</p>
     </div>
 </div>
 <a href="#index" id="myBtn" title="Go to top" style="display: block;">索引</a>
@@ -1242,5 +1712,6 @@
         });
     }
 </script>
+
 </body>
 </html>
