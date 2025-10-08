@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>小说：穿井消寒记</title>
+    <title>九九穿井消寒记</title>
     <link rel="stylesheet" href="../biupiukiu_like.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,6 +63,9 @@
 
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
     <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="my-container">
+        <h3>九九穿井消寒记</h3>
+        <h4><i>The Unfortunate Children in Beijing</i></h4>
+        <h6 class="w3-wide">（写作中）</h6>
         <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:800px" id="00">
             <h6>0.0</h6>
             <h6>引·八点一钟记</h6>
@@ -683,419 +686,419 @@
             <p class="xsTxt">等他从中关村回来时，Github Copilot已经帮男孩补全了最后一个全局函数。</p>
             <br>
             <button class="collapsible w4-button">点此展开/收起代码块</button>
-            <div class="folded-content w3-code notranslate" style="text-align: left">
-import math, random<br>
-<br>
-game_out = lambda x, prefix = "* ", suffix = "": print(prefix + str(x) + suffix)<br>
-<br>
-class Protection:<br>
-    protection_dict = {"none": ["无保护", 0], "loose_bandage": ["松垮的绷带", 0.1],<br>
-                       "tight_bandage": ["缠紧的绷带", 0.5], "ankle_support": ["护踝", 0.8], "splint": ["夹板", 0.99],<br>
-                       "cast": ["石膏", 0.99]}<br>
-    def __init__(self, prot_id):<br>
-        self.id = prot_id<br>
-        self.name = Protection.protection_dict[prot_id][0]<br>
-        self.protection = Protection.protection_dict[prot_id][1]<br>
-<br>
-class Footwear:<br>
-    footwear_dict = {"barefoot": ["光脚", 0, 0.5, 0], "sneakers": ["运动鞋", 0.1, 0.8, 5],<br>
-                     "boots": ["皮靴", 0.15, 0.5, 9], "high_heels": ["高跟鞋", 0.6, 0.3, 20],<br>
-                     "crocs": ["洞洞鞋", 0.3, 1, 3], "leather_shoes": ["皮鞋", 0.2, 0.3, 7]}<br>
-    def __init__(self, footwear_id):<br>
-        self.id = footwear_id<br>
-        self.name = Footwear.footwear_dict[footwear_id][0]<br>
-        self.instability = Footwear.footwear_dict[footwear_id][1]<br>
-        self.friction = Footwear.footwear_dict[footwear_id][2]<br>
-        self.attack = Footwear.footwear_dict[footwear_id][3]<br>
-<br>
-class Ground:<br>
-    ground_dict = {"grass": ["草地", 0.1, 0.5], "concrete": ["水泥地", 0.1, 0.2], "wood": ["木地板", 0.1, 0.5],<br>
-                   "sand": ["沙地", 0.3, 0.5], "gravel": ["碎石地", 0.4, 0.5], "trap": ["陷阱", 1, 0.5], }<br>
-    def __init__(self, ground_id):<br>
-        self.id = ground_id<br>
-        self.name = Ground.ground_dict[ground_id][0]<br>
-        self.unevenness = Ground.ground_dict[ground_id][1]<br>
-        self.friction = Ground.ground_dict[ground_id][2]<br>
-<br>
-class Ankle:<br>
-    lig_status = lambda x: "很健康" if x <= 0 else "有些松弛" if x <= 10 else "拉伤了" if x <= 80 else "撕裂了"<br>
-    bone_status = lambda x: "没有骨折" if x <= 0 else "有骨裂" if x <= 10 else "骨折了"<br>
-    def __init__(self):<br>
-        self.tib_lig = 0<br>
-        self.del_lig = 0<br>
-        self.lat_lig = 0<br>
-        self.med_mal = 0<br>
-        self.lat_mal = 0<br>
-        self.pos_mal = 0<br>
-        self.tal_shift = False<br>
-        self.protection = Protection("none")<br>
-    def fracture_i(self, force, continuity):<br>
-        if self.lat_lig <= 80:<br>
-            self.lat_mal = force<br>
-            self.lat_lig += 9 + force // 10<br>
-            if continuity:<br>
-                self.med_mal = math.ceil(force * 0.9)<br>
-                self.tal_shift = True<br>
-        else:<br>
-            self.lat_lig = 100<br>
-            self.med_mal = force<br>
-            self.tal_shift = True<br>
-    def fracture_ii_1(self, force, continuity):<br>
-        if self.del_lig <= 80:<br>
-            self.med_mal = force<br>
-            self.del_lig += 9 + force // 10<br>
-            if continuity:<br>
-                self.lat_mal = math.ceil(force * 0.9)<br>
-                self.pos_mal = math.ceil(force * 0.9)<br>
-                self.tal_shift = True<br>
-        else:<br>
-            self.del_lig = 100<br>
-            self.lat_mal = force<br>
-            self.pos_mal = force<br>
-            self.tal_shift = True<br>
-    def fracture_ii_2(self, force):<br>
-        self.lat_mal = force<br>
-        self.pos_mal = force<br>
-        if self.del_lig <= 80:<br>
-            self.del_lig += 9 + force // 10<br>
-            self.med_mal = force<br>
-        else:<br>
-            self.del_lig = 100<br>
-    def fracture_iii(self, force, continuity):<br>
-        if self.del_lig <= 80:<br>
-            self.med_mal = force<br>
-            self.del_lig += 9 + force // 10<br>
-            if continuity:<br>
-                self.tib_lig = force<br>
-                self.tal_shift = True<br>
-                self.lat_mal = math.ceil(force * 0.9)<br>
-    def fracture_p(self, force):<br>
-        self.med_mal = force<br>
-<br>
-    def i_twist(self, force, continuity):<br>
-        if force > 45 + random.randint(0, 10):<br>
-            if random.randint(0, 1) == 0:<br>
-                self.fracture_ii_2(force)<br>
-            else:<br>
-                self.fracture_i(force, continuity)<br>
-        else:<br>
-            self.lat_lig += force<br>
-            self.lat_lig = min(self.lat_lig, 100)<br>
-    def o_twist(self, force, continuity):<br>
-        if force > 45 + random.randint(0, 10):<br>
-            if random.randint(0, 1) == 0:<br>
-                self.fracture_ii_1(force, continuity)<br>
-            else:<br>
-                self.fracture_iii(force, continuity)<br>
-        else:<br>
-            self.del_lig += force<br>
-            self.del_lig = min(self.del_lig, 100)<br>
-    def injury_effect(self):<br>
-        lig_max = max(self.tib_lig, self.del_lig, self.lat_lig)<br>
-        mal_max = max(self.med_mal, self.lat_mal, self.pos_mal)<br>
-        if lig_max < 10 and mal_max <= 0:<br>
-            return 0<br>
-        elif lig_max < 50 and mal_max < 15:<br>
-            return 1<br>
-        else:<br>
-            return 2<br>
-    def description_str(self):<br>
-        effect = self.injury_effect()<br>
-        if effect == 0:<br>
-            return "可以正常运动。"<br>
-        elif effect == 1:<br>
-            return "有点瘸。"<br>
-        else:<br>
-            return "完全不能受力。"<br>
-    def show_status(self):<br>
-        game_out("下胫腓韧带" + Ankle.lig_status(self.tib_lig) + "；" + "三角韧带" + Ankle.lig_status(self.del_lig) + "；" + "外侧副韧带" + Ankle.lig_status(self.lat_lig) + "；")<br>
-        game_out("内踝" + Ankle.bone_status(self.med_mal) + "；" + "外踝" + Ankle.bone_status(self.lat_mal) + "；" + "后踝" + Ankle.bone_status(self.pos_mal) + "；")<br>
-        game_out("距骨" + ("错位了" if self.tal_shift else "没有错位") + "；")<br>
-<br>
-    def sprain_forced(self, force_extra):<br>
-        if random.random() < 0.3:<br>
-            self.o_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)<br>
-        else:<br>
-            self.i_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)<br>
-    def sprain_natural(self, force_extra, i_chance, o_chance):<br>
-        rand = random.random()<br>
-        if rand < i_chance:<br>
-            self.i_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)<br>
-            return True<br>
-        elif rand < i_chance + o_chance:<br>
-            self.o_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)<br>
-            return True<br>
-        return False<br>
-    def natual_chance(self):<br>
-        i_chance = self.lat_lig * (self.tib_lig + 100) * 9 / 200000<br>
-        o_chance = self.del_lig * (self.tib_lig + 100) / 200000<br>
-        return i_chance, o_chance<br>
-<br>
-class Character:<br>
-    def __init__(self, name, hp, damage, defence, footwear = "sneakers"):<br>
-        self.name = name<br>
-        self.hp = hp<br>
-        self.damage = damage<br>
-        self.defence = defence<br>
-        self.defend_factor = 0<br>
-        self.left_ankle = Ankle()<br>
-        self.right_ankle = Ankle()<br>
-        self.ground = Ground("concrete")<br>
-        self.footwear = Footwear(footwear)<br>
-    def step(self, ankle, force = 0):<br>
-        sprain_str = self.name + "在" + self.ground.name + "上崴脚了！"<br>
-        if random.random() > ankle.protection.protection:<br>
-            if random.random() < self.ground.unevenness or random.random() < self.footwear.friction + self.ground.friction - 1:<br>
-                ankle.sprain_forced(force)<br>
-                game_out(sprain_str)<br>
-                return True<br>
-            elif random.random() < 1 - (self.footwear.friction + self.ground.friction):<br>
-                game_out(self.name + "在" + self.ground.name + "上滑了一跤！")<br>
-                game_out(self.name + "崴脚了！")<br>
-                ankle.sprain_forced(force)<br>
-                return True<br>
-            else:<br>
-                increase = self.ground.unevenness + self.footwear.instability<br>
-                increase *= 0.2<br>
-                i_chance, o_chance = ankle.natual_chance()<br>
-                i_chance = max(i_chance + increase * 0.1, i_chance * (increase + 1))<br>
-                o_chance = max(o_chance + increase * 0.1, o_chance * (increase + 1))<br>
-                if ankle.sprain_natural(force, i_chance, o_chance):<br>
-                    game_out(sprain_str)<br>
-                    return True<br>
-        return False<br>
-<br>
-<br>
-    def fall(self, force):<br>
-        game_out(self.name + "从高处摔了下来！")<br>
-        ir, il = self.right_ankle.injury_effect(), self.left_ankle.injury_effect()<br>
-        if ir == il:<br>
-            if force > 45 + random.randint(0, 10):<br>
-                self.left_ankle.fracture_p(force)<br>
-                self.right_ankle.fracture_p(force)<br>
-                game_out(self.name + "双脚摔伤了！")<br>
-            else:<br>
-                self.step(self.left_ankle, force)<br>
-                self.step(self.right_ankle, force)<br>
-        elif ir > il:<br>
-            if force > 45 + random.randint(0, 10):<br>
-                self.right_ankle.fracture_p(force)<br>
-                game_out(self.name + "右脚摔伤了！")<br>
-            else:<br>
-                self.step(self.right_ankle, force)<br>
-        else:<br>
-            if force > 45 + random.randint(0, 10):<br>
-                self.left_ankle.fracture_p(force)<br>
-                game_out(self.name + "左脚摔伤了！")<br>
-            else:<br>
-                self.step(self.left_ankle, force)<br>
-    def move_to(self, ground):<br>
-        if self.act_status("移动", "移动能力") == 0:<br>
-            return<br>
-        self.ground = Ground(ground)<br>
-        game_out(self.name + "移动到了" + self.ground.name + "上。")<br>
-        self.step(self.main_ankle())<br>
-        if random.random() < 0.2:<br>
-            self.step(self.vice_ankle())<br>
-    def change_footwear(self, footwear):<br>
-        self.footwear = Footwear(footwear)<br>
-        if self.footwear.id == "barefoot":<br>
-            game_out(self.name + "脱掉了鞋子。")<br>
-        else:<br>
-            game_out(self.name + "换上了" + self.footwear.name + "。")<br>
-    def show_ankle_status(self):<br>
-        game_out(self.name + "检查自己的脚踝状态。")<br>
-        game_out(self.name + "的左脚踝：")<br>
-        self.left_ankle.show_status()<br>
-        game_out(self.name + "的右脚踝：")<br>
-        self.right_ankle.show_status()<br>
-        game_out(self.name + "的左脚" + self.left_ankle.description_str())<br>
-        game_out(self.name + "的右脚" + self.right_ankle.description_str())<br>
-    def main_ankle(self):<br>
-        if self.left_ankle.injury_effect() == self.right_ankle.injury_effect():<br>
-            return (self.left_ankle, self.right_ankle)[random.randint(0, 1)]<br>
-        elif self.left_ankle.injury_effect() > self.right_ankle.injury_effect():<br>
-            return self.right_ankle<br>
-        else:<br>
-            return self.left_ankle<br>
-    def vice_ankle(self):<br>
-        if self.main_ankle() == self.left_ankle:<br>
-            return self.right_ankle<br>
-        else:<br>
-            return self.left_ankle<br>
-    def protect(self, ankle, prot):<br>
-        ankle.protection = Protection(prot)<br>
-        ankle_name = "左" if ankle == self.left_ankle else "右"<br>
-        ankle_name += "脚踝"<br>
-        if prot == "none":<br>
-            game_out(self.name + "摘掉了" + ankle_name + "的保护装备。")<br>
-        else:<br>
-            game_out(self.name + "为" + ankle_name + "绑上了" + ankle.protection.name + "。")<br>
-<br>
-    def is_alive(self):<br>
-        return self.hp > 0<br>
-    def show_status(self):<br>
-        game_out(self.name + "检查自身状态。")<br>
-        game_out(self.name + "的生命值：" + str(self.hp))<br>
-        footwear_str = self.footwear.name<br>
-        if self.footwear.id != "barefoot":<br>
-            footwear_str = "穿着" + footwear_str<br>
-        game_out(self.name + "目前" + footwear_str + "站在" + self.ground.name + "上。")<br>
-        prot_str = self.name + "的"<br>
-        if self.left_ankle.protection.id != "none":<br>
-            prot_str += "左脚踝戴着" + self.left_ankle.protection.name + "，"<br>
-        else:<br>
-            prot_str += "左脚踝没有保护，"<br>
-        if self.right_ankle.protection.id != "none":<br>
-            prot_str += "右脚踝戴着" + self.right_ankle.protection.name + "。"<br>
-        else:<br>
-            prot_str += "右脚踝没有保护。"<br>
-        game_out(prot_str)<br>
-        if self.defend_factor != 0:<br>
-            game_out(self.name + "正在防御")<br>
-<br>
-    def act_status_silent(self):<br>
-        return 2 - min(self.left_ankle.injury_effect() + self.right_ankle.injury_effect(), 2)<br>
-    def act_status(self, act = "行动", index = "各项指标"):<br>
-        if self.left_ankle.injury_effect() >= 1 and self.right_ankle.injury_effect() >= 1:<br>
-            game_out(self.name + f"两只脚都扭伤了，不能{act}！")<br>
-            return 0<br>
-        elif self.left_ankle.injury_effect() >= 1:<br>
-            if self.left_ankle.injury_effect() == 2:<br>
-                game_out(self.name + f"左脚伤得很严重，不能{act}！")<br>
-                return 0<br>
-            else:<br>
-                game_out(self.name + f"左脚扭伤了，{index}下降！")<br>
-                return 1<br>
-        elif self.right_ankle.injury_effect() >= 1:<br>
-            if self.right_ankle.injury_effect() == 2:<br>
-                game_out(self.name + f"右脚伤得很严重，不能{act}！")<br>
-                return 0<br>
-            else:<br>
-                game_out(self.name + f"右脚扭伤了，{index}下降！")<br>
-                return 1<br>
-        return 2<br>
-<br>
-    def ankle_attack(self, target):<br>
-        status = self.act_status("攻击", "攻击力")<br>
-        force = self.damage * status / 2<br>
-        if status == 0:<br>
-            return<br>
-        elif status == 1:<br>
-            force *= 0.5<br>
-        game_out(self.name + "向" + target.name + "的脚踝发动攻击！")<br>
-        if self.step(self.main_ankle(), self.footwear.attack) or (random.random() < 0.3 and self.step(self.vice_ankle(), self.footwear.attack)):<br>
-            if self.act_status("攻击", "攻击力") == 0:<br>
-                return<br>
-        force = min(force, 100)<br>
-        lr = random.randint(0, 1)<br>
-        target_ankle = (target.left_ankle, target.right_ankle)[lr]<br>
-        target_ankle.sprain_forced(force)<br>
-        game_out(self.name + f"用{force}的力攻击了" + target.name + "的" + ["左", "右"][lr] + "脚踝！")<br>
-<br>
-    def attack(self, target):<br>
-        status = self.act_status("攻击", "攻击力")<br>
-        damage = self.damage + self.footwear.attack<br>
-        if status == 0:<br>
-            return<br>
-        elif status == 1:<br>
-            damage *= 0.5<br>
-        game_out(self.name + "向" + target.name + "发动攻击！")<br>
-        if self.step(self.main_ankle()) or (random.random() < 0.3 and self.step(self.vice_ankle())):<br>
-            if self.act_status("攻击", "攻击力") == 0:<br>
-                return<br>
-        target.take_damage(damage)<br>
-<br>
-    def defend(self):<br>
-        status = self.act_status("防御", "防御力")<br>
-        if status == 0:<br>
-            return<br>
-        elif status == 1:<br>
-            self.defend_factor = 0.5<br>
-        else:<br>
-            self.defend_factor = 1<br>
-        game_out(self.name + "进入防御状态！")<br>
-<br>
-    def heal(self):<br>
-        game_out(self.name + "开始治疗自己的脚踝。")<br>
-        for ankle in [self.left_ankle, self.right_ankle]:<br>
-            ankle.tib_lig = max(ankle.tib_lig - 10, 0)<br>
-            ankle.del_lig = max(ankle.del_lig - 10, 0)<br>
-            ankle.lat_lig = max(ankle.lat_lig - 10, 0)<br>
-            ankle.med_mal = max(ankle.med_mal - 10, 0)<br>
-            ankle.lat_mal = max(ankle.lat_mal - 10, 0)<br>
-            ankle.pos_mal = max(ankle.pos_mal - 10, 0)<br>
-            ankle.tal_shift = False<br>
-<br>
-    def take_damage(self, damage):<br>
-        defence = self.defence * self.defend_factor<br>
-        damage = max(damage - defence, 0)<br>
-        self.hp -= damage<br>
-        game_out(self.name + "受到了" + str(damage) + "点伤害！")<br>
-        game_out(self.name + "剩余生命值：" + str(self.hp))<br>
-<br>
-def act(self, target, action):<br>
-    if action == 0:<br>
-        self.attack(target)<br>
-    elif action == 1:<br>
-        self.ankle_attack(target)<br>
-    elif action == 2:<br>
-        self.heal()<br>
-    elif action == 3:<br>
-        self.defend()<br>
-    elif action == 4:<br>
-        self.move_to(list(Ground.ground_dict.keys())[random.randint(0, len(Ground.ground_dict) - 1)])<br>
-    elif action == 5:<br>
-        self.change_footwear(list(Footwear.footwear_dict.keys())[random.randint(0, len(Footwear.footwear_dict) - 1)])<br>
-    elif action == 6:<br>
-        self.protect(self.vice_ankle(), list(Protection.protection_dict.keys())[random.randint(0, len(Protection.protection_dict) - 1)])<br>
-<br>
-def basic_logic(self, target):<br>
-    if self.act_status_silent() == 0:<br>
-        return 2<br>
-    else:<br>
-        return random.randint(0, 6)<br>
-<br>
-def battle(char1, char2, pause = True, strat_1 = basic_logic, strat_2 = basic_logic):<br>
-    turns = 0<br>
-    while char1.is_alive() and char2.is_alive() and turns < 5000:<br>
-        char1.defend_factor = 0<br>
-        act(char1, char2, strat_1(char1, char2))<br>
-        if pause:<br>
-            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")<br>
-            if cmd == "check":<br>
-                char1.show_status()<br>
-                char1.show_ankle_status()<br>
-                input("按Enter键继续...")<br>
-        if not char2.is_alive():<br>
-            break<br>
-        char2.defend_factor = 0<br>
-        act(char2, char1, strat_2(char2, char1))<br>
-        if pause:<br>
-            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")<br>
-            if cmd == "check":<br>
-                char2.show_status()<br>
-                char2.show_ankle_status()<br>
-                input("按Enter键继续...")<br>
-        turns += 1<br>
-    if char1.is_alive():<br>
-        game_out(char1.name + "胜利！")<br>
-        return True<br>
-    elif char2.is_alive():<br>
-        game_out(char2.name + "胜利！")<br>
-        return False<br>
-    else:<br>
-        return char1.hp >= char2.hp<br>
-<br>
-<br>
-name_a = input("请输入己方女孩的名字：")<br>
-name_b = input("请输入敌方女孩的名字：")<br>
-<br>
-char_a = Character(name_a, 100, 10, 5)<br>
-char_b = Character(name_b, 100, 10, 5)<br>
-battle(char_a, char_b, True, basic_logic, basic_logic)<br>
-<br>
-input("按Enter键继续...")<br>
+            <div class="folded-content w3-code" style="text-align: left">
+                <pre><code class="language-python">import math, random
+
+game_out = lambda x, prefix = "* ", suffix = "": print(prefix + str(x) + suffix)
+
+class Protection:
+    protection_dict = {"none": ["无保护", 0], "loose_bandage": ["松垮的绷带", 0.1],
+                       "tight_bandage": ["缠紧的绷带", 0.5], "ankle_support": ["护踝", 0.8], "splint": ["夹板", 0.99],
+                       "cast": ["石膏", 0.99]}
+    def __init__(self, prot_id):
+        self.id = prot_id
+        self.name = Protection.protection_dict[prot_id][0]
+        self.protection = Protection.protection_dict[prot_id][1]
+
+class Footwear:
+    footwear_dict = {"barefoot": ["光脚", 0, 0.5, 0], "sneakers": ["运动鞋", 0.1, 0.8, 5],
+                     "boots": ["皮靴", 0.15, 0.5, 9], "high_heels": ["高跟鞋", 0.6, 0.3, 20],
+                     "crocs": ["洞洞鞋", 0.3, 1, 3], "leather_shoes": ["皮鞋", 0.2, 0.3, 7]}
+    def __init__(self, footwear_id):
+        self.id = footwear_id
+        self.name = Footwear.footwear_dict[footwear_id][0]
+        self.instability = Footwear.footwear_dict[footwear_id][1]
+        self.friction = Footwear.footwear_dict[footwear_id][2]
+        self.attack = Footwear.footwear_dict[footwear_id][3]
+
+class Ground:
+    ground_dict = {"grass": ["草地", 0.1, 0.5], "concrete": ["水泥地", 0.1, 0.2], "wood": ["木地板", 0.1, 0.5],
+                   "sand": ["沙地", 0.3, 0.5], "gravel": ["碎石地", 0.4, 0.5], "trap": ["陷阱", 1, 0.5], }
+    def __init__(self, ground_id):
+        self.id = ground_id
+        self.name = Ground.ground_dict[ground_id][0]
+        self.unevenness = Ground.ground_dict[ground_id][1]
+        self.friction = Ground.ground_dict[ground_id][2]
+
+class Ankle:
+    lig_status = lambda x: "很健康" if x <= 0 else "有些松弛" if x <= 10 else "拉伤了" if x <= 80 else "撕裂了"
+    bone_status = lambda x: "没有骨折" if x <= 0 else "有骨裂" if x <= 10 else "骨折了"
+    def __init__(self):
+        self.tib_lig = 0
+        self.del_lig = 0
+        self.lat_lig = 0
+        self.med_mal = 0
+        self.lat_mal = 0
+        self.pos_mal = 0
+        self.tal_shift = False
+        self.protection = Protection("none")
+    def fracture_i(self, force, continuity):
+        if self.lat_lig <= 80:
+            self.lat_mal = force
+            self.lat_lig += 9 + force // 10
+            if continuity:
+                self.med_mal = math.ceil(force * 0.9)
+                self.tal_shift = True
+        else:
+            self.lat_lig = 100
+            self.med_mal = force
+            self.tal_shift = True
+    def fracture_ii_1(self, force, continuity):
+        if self.del_lig <= 80:
+            self.med_mal = force
+            self.del_lig += 9 + force // 10
+            if continuity:
+                self.lat_mal = math.ceil(force * 0.9)
+                self.pos_mal = math.ceil(force * 0.9)
+                self.tal_shift = True
+        else:
+            self.del_lig = 100
+            self.lat_mal = force
+            self.pos_mal = force
+            self.tal_shift = True
+    def fracture_ii_2(self, force):
+        self.lat_mal = force
+        self.pos_mal = force
+        if self.del_lig <= 80:
+            self.del_lig += 9 + force // 10
+            self.med_mal = force
+        else:
+            self.del_lig = 100
+    def fracture_iii(self, force, continuity):
+        if self.del_lig <= 80:
+            self.med_mal = force
+            self.del_lig += 9 + force // 10
+            if continuity:
+                self.tib_lig = force
+                self.tal_shift = True
+                self.lat_mal = math.ceil(force * 0.9)
+    def fracture_p(self, force):
+        self.med_mal = force
+
+    def i_twist(self, force, continuity):
+        if force > 45 + random.randint(0, 10):
+            if random.randint(0, 1) == 0:
+                self.fracture_ii_2(force)
+            else:
+                self.fracture_i(force, continuity)
+        else:
+            self.lat_lig += force
+            self.lat_lig = min(self.lat_lig, 100)
+    def o_twist(self, force, continuity):
+        if force > 45 + random.randint(0, 10):
+            if random.randint(0, 1) == 0:
+                self.fracture_ii_1(force, continuity)
+            else:
+                self.fracture_iii(force, continuity)
+        else:
+            self.del_lig += force
+            self.del_lig = min(self.del_lig, 100)
+    def injury_effect(self):
+        lig_max = max(self.tib_lig, self.del_lig, self.lat_lig)
+        mal_max = max(self.med_mal, self.lat_mal, self.pos_mal)
+        if lig_max < 10 and mal_max <= 0:
+            return 0
+        elif lig_max < 50 and mal_max < 15:
+            return 1
+        else:
+            return 2
+    def description_str(self):
+        effect = self.injury_effect()
+        if effect == 0:
+            return "可以正常运动。"
+        elif effect == 1:
+            return "有点瘸。"
+        else:
+            return "完全不能受力。"
+    def show_status(self):
+        game_out("下胫腓韧带" + Ankle.lig_status(self.tib_lig) + "；" + "三角韧带" + Ankle.lig_status(self.del_lig) + "；" + "外侧副韧带" + Ankle.lig_status(self.lat_lig) + "；")
+        game_out("内踝" + Ankle.bone_status(self.med_mal) + "；" + "外踝" + Ankle.bone_status(self.lat_mal) + "；" + "后踝" + Ankle.bone_status(self.pos_mal) + "；")
+        game_out("距骨" + ("错位了" if self.tal_shift else "没有错位") + "；")
+
+    def sprain_forced(self, force_extra):
+        if random.random() < 0.3:
+            self.o_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)
+        else:
+            self.i_twist(force_extra + 20 + random.randint(0, 40), random.randint(0, 2) == 0)
+    def sprain_natural(self, force_extra, i_chance, o_chance):
+        rand = random.random()
+        if rand < i_chance:
+            self.i_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)
+            return True
+        elif rand < i_chance + o_chance:
+            self.o_twist(force_extra + 15 + random.randint(0, 8), random.randint(0, 9) == 0)
+            return True
+        return False
+    def natual_chance(self):
+        i_chance = self.lat_lig * (self.tib_lig + 100) * 9 / 200000
+        o_chance = self.del_lig * (self.tib_lig + 100) / 200000
+        return i_chance, o_chance
+
+class Character:
+    def __init__(self, name, hp, damage, defence, footwear = "sneakers"):
+        self.name = name
+        self.hp = hp
+        self.damage = damage
+        self.defence = defence
+        self.defend_factor = 0
+        self.left_ankle = Ankle()
+        self.right_ankle = Ankle()
+        self.ground = Ground("concrete")
+        self.footwear = Footwear(footwear)
+    def step(self, ankle, force = 0):
+        sprain_str = self.name + "在" + self.ground.name + "上崴脚了！"
+        if random.random() > ankle.protection.protection:
+            if random.random() < self.ground.unevenness or random.random() < self.footwear.friction + self.ground.friction - 1:
+                ankle.sprain_forced(force)
+                game_out(sprain_str)
+                return True
+            elif random.random() < 1 - (self.footwear.friction + self.ground.friction):
+                game_out(self.name + "在" + self.ground.name + "上滑了一跤！")
+                game_out(self.name + "崴脚了！")
+                ankle.sprain_forced(force)
+                return True
+            else:
+                increase = self.ground.unevenness + self.footwear.instability
+                increase *= 0.2
+                i_chance, o_chance = ankle.natual_chance()
+                i_chance = max(i_chance + increase * 0.1, i_chance * (increase + 1))
+                o_chance = max(o_chance + increase * 0.1, o_chance * (increase + 1))
+                if ankle.sprain_natural(force, i_chance, o_chance):
+                    game_out(sprain_str)
+                    return True
+        return False
+
+
+    def fall(self, force):
+        game_out(self.name + "从高处摔了下来！")
+        ir, il = self.right_ankle.injury_effect(), self.left_ankle.injury_effect()
+        if ir == il:
+            if force > 45 + random.randint(0, 10):
+                self.left_ankle.fracture_p(force)
+                self.right_ankle.fracture_p(force)
+                game_out(self.name + "双脚摔伤了！")
+            else:
+                self.step(self.left_ankle, force)
+                self.step(self.right_ankle, force)
+        elif ir > il:
+            if force > 45 + random.randint(0, 10):
+                self.right_ankle.fracture_p(force)
+                game_out(self.name + "右脚摔伤了！")
+            else:
+                self.step(self.right_ankle, force)
+        else:
+            if force > 45 + random.randint(0, 10):
+                self.left_ankle.fracture_p(force)
+                game_out(self.name + "左脚摔伤了！")
+            else:
+                self.step(self.left_ankle, force)
+    def move_to(self, ground):
+        if self.act_status("移动", "移动能力") == 0:
+            return
+        self.ground = Ground(ground)
+        game_out(self.name + "移动到了" + self.ground.name + "上。")
+        self.step(self.main_ankle())
+        if random.random() < 0.2:
+            self.step(self.vice_ankle())
+    def change_footwear(self, footwear):
+        self.footwear = Footwear(footwear)
+        if self.footwear.id == "barefoot":
+            game_out(self.name + "脱掉了鞋子。")
+        else:
+            game_out(self.name + "换上了" + self.footwear.name + "。")
+    def show_ankle_status(self):
+        game_out(self.name + "检查自己的脚踝状态。")
+        game_out(self.name + "的左脚踝：")
+        self.left_ankle.show_status()
+        game_out(self.name + "的右脚踝：")
+        self.right_ankle.show_status()
+        game_out(self.name + "的左脚" + self.left_ankle.description_str())
+        game_out(self.name + "的右脚" + self.right_ankle.description_str())
+    def main_ankle(self):
+        if self.left_ankle.injury_effect() == self.right_ankle.injury_effect():
+            return (self.left_ankle, self.right_ankle)[random.randint(0, 1)]
+        elif self.left_ankle.injury_effect() > self.right_ankle.injury_effect():
+            return self.right_ankle
+        else:
+            return self.left_ankle
+    def vice_ankle(self):
+        if self.main_ankle() == self.left_ankle:
+            return self.right_ankle
+        else:
+            return self.left_ankle
+    def protect(self, ankle, prot):
+        ankle.protection = Protection(prot)
+        ankle_name = "左" if ankle == self.left_ankle else "右"
+        ankle_name += "脚踝"
+        if prot == "none":
+            game_out(self.name + "摘掉了" + ankle_name + "的保护装备。")
+        else:
+            game_out(self.name + "为" + ankle_name + "绑上了" + ankle.protection.name + "。")
+
+    def is_alive(self):
+        return self.hp > 0
+    def show_status(self):
+        game_out(self.name + "检查自身状态。")
+        game_out(self.name + "的生命值：" + str(self.hp))
+        footwear_str = self.footwear.name
+        if self.footwear.id != "barefoot":
+            footwear_str = "穿着" + footwear_str
+        game_out(self.name + "目前" + footwear_str + "站在" + self.ground.name + "上。")
+        prot_str = self.name + "的"
+        if self.left_ankle.protection.id != "none":
+            prot_str += "左脚踝戴着" + self.left_ankle.protection.name + "，"
+        else:
+            prot_str += "左脚踝没有保护，"
+        if self.right_ankle.protection.id != "none":
+            prot_str += "右脚踝戴着" + self.right_ankle.protection.name + "。"
+        else:
+            prot_str += "右脚踝没有保护。"
+        game_out(prot_str)
+        if self.defend_factor != 0:
+            game_out(self.name + "正在防御")
+
+    def act_status_silent(self):
+        return 2 - min(self.left_ankle.injury_effect() + self.right_ankle.injury_effect(), 2)
+    def act_status(self, act = "行动", index = "各项指标"):
+        if self.left_ankle.injury_effect() >= 1 and self.right_ankle.injury_effect() >= 1:
+            game_out(self.name + f"两只脚都扭伤了，不能{act}！")
+            return 0
+        elif self.left_ankle.injury_effect() >= 1:
+            if self.left_ankle.injury_effect() == 2:
+                game_out(self.name + f"左脚伤得很严重，不能{act}！")
+                return 0
+            else:
+                game_out(self.name + f"左脚扭伤了，{index}下降！")
+                return 1
+        elif self.right_ankle.injury_effect() >= 1:
+            if self.right_ankle.injury_effect() == 2:
+                game_out(self.name + f"右脚伤得很严重，不能{act}！")
+                return 0
+            else:
+                game_out(self.name + f"右脚扭伤了，{index}下降！")
+                return 1
+        return 2
+
+    def ankle_attack(self, target):
+        status = self.act_status("攻击", "攻击力")
+        force = self.damage * status / 2
+        if status == 0:
+            return
+        elif status == 1:
+            force *= 0.5
+        game_out(self.name + "向" + target.name + "的脚踝发动攻击！")
+        if self.step(self.main_ankle(), self.footwear.attack) or (random.random() < 0.3 and self.step(self.vice_ankle(), self.footwear.attack)):
+            if self.act_status("攻击", "攻击力") == 0:
+                return
+        force = min(force, 100)
+        lr = random.randint(0, 1)
+        target_ankle = (target.left_ankle, target.right_ankle)[lr]
+        target_ankle.sprain_forced(force)
+        game_out(self.name + f"用{force}的力攻击了" + target.name + "的" + ["左", "右"][lr] + "脚踝！")
+
+    def attack(self, target):
+        status = self.act_status("攻击", "攻击力")
+        damage = self.damage + self.footwear.attack
+        if status == 0:
+            return
+        elif status == 1:
+            damage *= 0.5
+        game_out(self.name + "向" + target.name + "发动攻击！")
+        if self.step(self.main_ankle()) or (random.random() < 0.3 and self.step(self.vice_ankle())):
+            if self.act_status("攻击", "攻击力") == 0:
+                return
+        target.take_damage(damage)
+
+    def defend(self):
+        status = self.act_status("防御", "防御力")
+        if status == 0:
+            return
+        elif status == 1:
+            self.defend_factor = 0.5
+        else:
+            self.defend_factor = 1
+        game_out(self.name + "进入防御状态！")
+
+    def heal(self):
+        game_out(self.name + "开始治疗自己的脚踝。")
+        for ankle in [self.left_ankle, self.right_ankle]:
+            ankle.tib_lig = max(ankle.tib_lig - 10, 0)
+            ankle.del_lig = max(ankle.del_lig - 10, 0)
+            ankle.lat_lig = max(ankle.lat_lig - 10, 0)
+            ankle.med_mal = max(ankle.med_mal - 10, 0)
+            ankle.lat_mal = max(ankle.lat_mal - 10, 0)
+            ankle.pos_mal = max(ankle.pos_mal - 10, 0)
+            ankle.tal_shift = False
+
+    def take_damage(self, damage):
+        defence = self.defence * self.defend_factor
+        damage = max(damage - defence, 0)
+        self.hp -= damage
+        game_out(self.name + "受到了" + str(damage) + "点伤害！")
+        game_out(self.name + "剩余生命值：" + str(self.hp))
+
+def act(self, target, action):
+    if action == 0:
+        self.attack(target)
+    elif action == 1:
+        self.ankle_attack(target)
+    elif action == 2:
+        self.heal()
+    elif action == 3:
+        self.defend()
+    elif action == 4:
+        self.move_to(list(Ground.ground_dict.keys())[random.randint(0, len(Ground.ground_dict) - 1)])
+    elif action == 5:
+        self.change_footwear(list(Footwear.footwear_dict.keys())[random.randint(0, len(Footwear.footwear_dict) - 1)])
+    elif action == 6:
+        self.protect(self.vice_ankle(), list(Protection.protection_dict.keys())[random.randint(0, len(Protection.protection_dict) - 1)])
+
+def basic_logic(self, target):
+    if self.act_status_silent() == 0:
+        return 2
+    else:
+        return random.randint(0, 6)
+
+def battle(char1, char2, pause = True, strat_1 = basic_logic, strat_2 = basic_logic):
+    turns = 0
+    while char1.is_alive() and char2.is_alive() and turns < 5000:
+        char1.defend_factor = 0
+        act(char1, char2, strat_1(char1, char2))
+        if pause:
+            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")
+            if cmd == "check":
+                char1.show_status()
+                char1.show_ankle_status()
+                input("按Enter键继续...")
+        if not char2.is_alive():
+            break
+        char2.defend_factor = 0
+        act(char2, char1, strat_2(char2, char1))
+        if pause:
+            cmd = input("(按Enter键继续，输入check可以查看角色当前状态):")
+            if cmd == "check":
+                char2.show_status()
+                char2.show_ankle_status()
+                input("按Enter键继续...")
+        turns += 1
+    if char1.is_alive():
+        game_out(char1.name + "胜利！")
+        return True
+    elif char2.is_alive():
+        game_out(char2.name + "胜利！")
+        return False
+    else:
+        return char1.hp >= char2.hp
+
+
+name_a = input("请输入己方女孩的名字：")
+name_b = input("请输入敌方女孩的名字：")
+
+char_a = Character(name_a, 100, 10, 5)
+char_b = Character(name_b, 100, 10, 5)
+battle(char_a, char_b, True, basic_logic, basic_logic)
+
+input("按Enter键继续...")</code></pre>
             </div>
             <p class="xsDate">2025</p>
         </div>
@@ -1696,6 +1699,13 @@ input("按Enter键继续...")<br>
 </div>
 <a href="#index" id="myBtn" title="Go to top" style="display: block;">索引</a>
 <script src="../bpk.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+
+<script>hljs.highlightAll();</script>
 <script>
     const coll = document.getElementsByClassName("collapsible");
     let i;
