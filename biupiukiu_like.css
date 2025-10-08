@@ -8,7 +8,7 @@ body {font-family: "Lato", sans-serif}
 .matbox {margin: 10px; padding: 10px; border-style: dashed; background: cyan;}
 .xsTxt i {color: orangered;}
 
-#myBtn {
+#myBtn, .my-button {
   display: none;
   position: fixed;
   bottom: 20px;
